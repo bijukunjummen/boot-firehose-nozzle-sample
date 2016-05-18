@@ -23,14 +23,12 @@ public class FirehoseClientConfiguration {
     }
 
     @Bean
-    public SpringCloudFoundryClient cloudFoundryClient(@Value("${cf.host}") String host,
-                                          @Value("${cf.username}") String username,
-                                          @Value("${cf.password}") String password) {
+    public SpringCloudFoundryClient cloudFoundryClient(CfProperties cfProps) {
         return SpringCloudFoundryClient.builder()
-                .host(host)
-                .username(username)
-                .password(password)
-                .skipSslValidation(true)
+                .host(cfProps.getHost())
+                .username(cfProps.getUser())
+                .password(cfProps.getPassword())
+                .skipSslValidation(cfProps.isSkipSslValidation())
                 .build();
     }
 
