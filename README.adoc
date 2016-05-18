@@ -1,11 +1,11 @@
-This is a simple Spring Boot based app to demonstrate using Snotel to listen to Cloudfoundry Firehose events
+This is a simple Spring Boot based app to demonstrate using https://github.com/cloudfoundry/cf-java-client[CF-Java-Client] to listen to Cloudfoundry Firehose events
 
 
 == Demonstration
 * Start up PCF Dev - Download https://github.com/pivotal-cf/pcfdev[PCFDev] and start it up locally.
 
 
-* Verify entries in src/main/resources/application.yml file
+* Verify entries in src/main/resources/application.yaml file
 
 * Start the application
 [source]
