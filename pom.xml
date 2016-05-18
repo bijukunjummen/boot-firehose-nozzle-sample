@@ -16,25 +16,19 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-		<cf-client.version>2.0.0.M4</cf-client.version>
+		<cf-client.version>2.0.0.BUILD-SNAPSHOT</cf-client.version>
 		<reactor.version>2.5.0.BUILD-SNAPSHOT</reactor.version>
 		<lombok.version>1.16.8</lombok.version>
-		<rxjava.version>1.1.1</rxjava.version>
 	</properties>
 
-	<name>Spring Boot Sample for Snotel with Firehose </name>
-	<description>A Spring Boot sample demonstrating Snotel with Firehose</description>
+	<name>Spring Boot Sample for integrating with Firehose using Cloud Foundry Client </name>
+	<description>Spring Boot Sample for integrating with Firehose using Cloud Foundry Client </description>
 	<url>https://github.com/cloudfoundry-community/snotel</url>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.github.cloudfoundry-community</groupId>
-			<artifactId>snotel</artifactId>
-			<version>0.3-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -59,18 +53,8 @@
 			<groupId>io.projectreactor</groupId>
 			<artifactId>reactor-netty</artifactId>
 			<version>${reactor.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>io.netty</groupId>
-					<artifactId>netty-all</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
-		<dependency>
-			<groupId>io.reactivex</groupId>
-			<artifactId>rxjava</artifactId>
-			<version>${rxjava.version}</version>
-		</dependency>
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>

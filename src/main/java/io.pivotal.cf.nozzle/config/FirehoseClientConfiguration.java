@@ -1,49 +1,39 @@
 package io.pivotal.cf.nozzle.config;
 
-import cf.dropsonde.firehose.Firehose;
-import cf.dropsonde.firehose.FirehoseBuilder;
-import org.cloudfoundry.client.CloudFoundryClient;
+import org.cloudfoundry.doppler.DopplerClient;
+import org.cloudfoundry.reactor.doppler.ReactorDopplerClient;
 import org.cloudfoundry.spring.client.SpringCloudFoundryClient;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.util.Assert;
 
 /**
  * Responsible for all bean definitions to set up a Firehose client
  */
 @Configuration
-@EnableConfigurationProperties(CfFirehoseProperties.class)
+@EnableConfigurationProperties(CfProperties.class)
 public class FirehoseClientConfiguration {
     @Bean
-    public Firehose firehose(CfFirehoseProperties firehoseClientProperties) {
-        String oAuthToken = getOAuthAccessToken(firehoseClientProperties);
-        return FirehoseBuilder.create(
-                firehoseClientProperties.getDopplerEndpoint(),
-                oAuthToken
-        ).skipTlsValidation(firehoseClientProperties.isSkipTlsValidation())
-                .build();
+    public DopplerClient dopplerClient(SpringCloudFoundryClient cloudFoundryClient) {
+        return
+                ReactorDopplerClient.builder()
+                        .cloudFoundryClient(cloudFoundryClient)
+                        .build();
     }
 
-
-    private String getOAuthAccessToken(CfFirehoseProperties firehoseClientProperties) {
-        if (firehoseClientProperties.getUser() != null
-                && firehoseClientProperties.getPassword() != null
-                && firehoseClientProperties.getApiEndpoint() != null ) {
-            String oauthAccessToken = loginAndGetAccessToken(firehoseClientProperties);
-            return oauthAccessToken;
-        }
-        Assert.notNull(firehoseClientProperties.getAuthToken());
-        return firehoseClientProperties.getAuthToken();
-    }
-
-    private String loginAndGetAccessToken(CfFirehoseProperties props) {
-        CloudFoundryClient cloudFoundryClient= SpringCloudFoundryClient.builder()
-                .host(props.getApiEndpoint())
-                .username(props.getUser())
-                .password(props.getPassword())
+    @Bean
+    public SpringCloudFoundryClient cloudFoundryClient(@Value("${cf.host}") String host,
+                                          @Value("${cf.username}") String username,
+                                          @Value("${cf.password}") String password) {
+        return SpringCloudFoundryClient.builder()
+                .host(host)
+                .username(username)
+                .password(password)
                 .skipSslValidation(true)
                 .build();
-        return cloudFoundryClient.getAccessToken().get();
     }
+
+
 }
+
