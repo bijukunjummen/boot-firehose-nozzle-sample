@@ -15,10 +15,10 @@ import reactor.core.publisher.Flux;
 import java.util.UUID;
 
 @SpringBootApplication
-public class SnotelFirehoseClientApplication {
+public class CfFirehoseClientApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SnotelFirehoseClientApplication.class, args);
+		SpringApplication.run(CfFirehoseClientApplication.class, args);
 	}
 
 }
