@@ -1,8 +1,6 @@
 package io.pivotal.cf.nozzle;
 
-import org.cloudfoundry.doppler.DopplerClient;
-import org.cloudfoundry.doppler.Event;
-import org.cloudfoundry.doppler.FirehoseRequest;
+import org.cloudfoundry.doppler.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,13 +37,16 @@ class SampleCommandLineRunner implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Flux<Event> cfEvents = this.dopplerClient.firehose(FirehoseRequest
-				.builder()
-				.subscriptionId(UUID.randomUUID().toString()).build());
+		Flux<Event> cfEvents = this.dopplerClient.firehose(
+				FirehoseRequest
+						.builder()
+						.subscriptionId(UUID.randomUUID().toString()).build());
 
-		cfEvents.subscribe(e -> {
-			LOGGER.info(e.toString());
-		});
+		cfEvents
+//				.filter(e -> LogMessage.class.isInstance(e))
+//				.map(e -> (LogMessage)e)
+//				.map(LogMessage::getMessage)
+				.subscribe(e -> LOGGER.info(e.toString()));
 
 	}
 
