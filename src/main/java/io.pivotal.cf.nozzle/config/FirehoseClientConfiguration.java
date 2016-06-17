@@ -1,9 +1,6 @@
 package io.pivotal.cf.nozzle.config;
 
-import org.cloudfoundry.client.CloudFoundryClient;
 import org.cloudfoundry.doppler.DopplerClient;
-import org.cloudfoundry.operations.CloudFoundryOperations;
-import org.cloudfoundry.operations.CloudFoundryOperationsBuilder;
 import org.cloudfoundry.reactor.doppler.ReactorDopplerClient;
 import org.cloudfoundry.spring.client.SpringCloudFoundryClient;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -34,10 +31,10 @@ public class FirehoseClientConfiguration {
 				.build();
 	}
 
-	@Bean
-	public CloudFoundryOperations cloudFoundryOperations(CloudFoundryClient cloudFoundryClient) {
-		return new CloudFoundryOperationsBuilder().cloudFoundryClient(cloudFoundryClient).build();
-	}
+//	@Bean
+//	public CloudFoundryOperations cloudFoundryOperations(CloudFoundryClient cloudFoundryClient) {
+//		return new CloudFoundryOperationsBuilder().cloudFoundryClient(cloudFoundryClient).build();
+//	}
 
 
 }

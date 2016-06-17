@@ -43,9 +43,9 @@ class SampleCommandLineRunner implements CommandLineRunner {
 						.subscriptionId(UUID.randomUUID().toString()).build());
 
 		cfEvents
-//				.filter(e -> LogMessage.class.isInstance(e))
-//				.map(e -> (LogMessage)e)
-//				.map(LogMessage::getMessage)
+				.filter(e -> LogMessage.class.isInstance(e))
+				.map(e -> (LogMessage)e)
+				.map(LogMessage::getMessage)
 				.subscribe(e -> LOGGER.info(e.toString()));
 
 	}
