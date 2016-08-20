@@ -3,3 +3,8 @@ cf:
   user: admin
   password: admin
   skipSslValidation: true
+
+
+logging:
+  level:
+    root: INFO

@@ -37,15 +37,12 @@ class SampleCommandLineRunner implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Flux<Event> cfEvents = this.dopplerClient.firehose(
+		Flux<Envelope> cfEvents = this.dopplerClient.firehose(
 				FirehoseRequest
 						.builder()
 						.subscriptionId(UUID.randomUUID().toString()).build());
 
 		cfEvents
-				.filter(e -> LogMessage.class.isInstance(e))
-				.map(e -> (LogMessage)e)
-				.map(LogMessage::getMessage)
 				.subscribe(e -> LOGGER.info(e.toString()));
 
 	}

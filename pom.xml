@@ -16,8 +16,9 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-		<cf-client.version>2.0.0.BUILD-SNAPSHOT</cf-client.version>
-		<reactor.version>2.5.0.BUILD-SNAPSHOT</reactor.version>
+		<cf-client.version>2.0.0.RC2</cf-client.version>
+		<reactor.version>3.0.0.RELEASE</reactor.version>
+		<reactor-netty.version>0.5.0.RELEASE</reactor-netty.version>
 		<lombok.version>1.16.8</lombok.version>
 	</properties>
 
@@ -32,11 +33,15 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.cloudfoundry</groupId>
-			<artifactId>cloudfoundry-client-spring</artifactId>
+			<artifactId>cloudfoundry-client-reactor</artifactId>
 			<version>${cf-client.version}</version>
 		</dependency>
 		<dependency>
@@ -50,9 +55,9 @@
 			<version>${reactor.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>io.projectreactor</groupId>
+			<groupId>io.projectreactor.ipc</groupId>
 			<artifactId>reactor-netty</artifactId>
-			<version>${reactor.version}</version>
+			<version>${reactor-netty.version}</version>
 		</dependency>
 
 		<dependency>
@@ -84,13 +89,29 @@
 			<name>Spring Milestones</name>
 			<url>http://repo.spring.io/milestone</url>
 			<snapshots>
-				<enabled>true</enabled>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>spring-releases</id>
+			<name>Spring Releases</name>
+			<url>http://repo.spring.io/release</url>
+			<snapshots>
+				<enabled>false</enabled>
 			</snapshots>
 		</repository>
 		<repository>
 			<id>spring-snapshots</id>
 			<name>Spring Snapshots</name>
 			<url>http://repo.spring.io/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>sonatype-oss-snapshots</id>
+			<name>Sonatype OSS Snapshots</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
