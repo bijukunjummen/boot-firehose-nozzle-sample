@@ -16,9 +16,9 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-		<cf-client.version>2.0.0.RC2</cf-client.version>
-		<reactor.version>3.0.0.RELEASE</reactor.version>
-		<reactor-netty.version>0.5.0.RELEASE</reactor-netty.version>
+		<cf-client.version>2.1.0.RELEASE</cf-client.version>
+		<reactor.version>3.0.4.RELEASE</reactor.version>
+		<reactor-netty.version>0.6.0.RELEASE</reactor-netty.version>
 		<lombok.version>1.16.8</lombok.version>
 	</properties>
 
